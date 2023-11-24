@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "747731149273",
+    "project_id": "news-jet-app",
+    "storage_bucket": "news-jet-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747731149273:android:42aaa7ee6f68b878b0b9c8",
+        "android_client_info": {
+          "package_name": "com.example.newsarticleapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBefjWpuMjXqtrrN71f2nV3YszI9g1e1Dg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747731149273:android:225955d76fd60111b0b9c8",
+        "android_client_info": {
+          "package_name": "com.example.newsarticleapp.ui"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBefjWpuMjXqtrrN71f2nV3YszI9g1e1Dg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
