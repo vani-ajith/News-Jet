@@ -18,43 +18,67 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/homescreen_appbar">
+
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/constraint"
+                    app:layout_constraintBottom_toBottomOf="@id/constraint"
+                    app:layout_constraintLeft_toLeftOf="@id/constraint"
                     android:text="News Jet"
-                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="@id/constraint"
+                app:layout_constraintRight_toRightOf="parent"
+                android:orientation="horizontal"
+                android:gravity="end">
+
+                <!-- Add a TextView as the filter label -->
+                <TextView
+                    android:id="@+id/filter_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="New - Old"
+                    android:textSize="15sp"
                     android:textStyle="bold"
-                    android:textSize="20sp"/>
+                    android:textColor="@color/white"
+                    android:layout_marginEnd="16dp" />
+
+                <!-- Spinner aligned to the right -->
                 <Spinner
-                    android:id="@+id/spinner_homepage_dropdown"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:background="@drawable/ic_filter_homepage24"
-                    android:spinnerMode="dropdown"
-                    android:layout_marginEnd="20dp"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    android:id="@+id/spinner_filter"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
 
-                <!--<ImageView>-->
-<!--                    android:id="@+id/iv_ab_add"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:src="@drawable/ic_filter_homepage24"-->
-<!--                    android:layout_marginEnd="20dp"-->
-<!--                    app:layout_constraintRight_toRightOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"/>-->
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp" />
 
+            </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_article_list"

@@ -4,15 +4,13 @@ import android.os.AsyncTask
 import com.example.newsarticleapp.model.Article
 import com.example.newsarticleapp.model.NewsResponse
 import com.google.gson.Gson
-import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 
-class NewsApiTask(private val callback: (List<Article>?) -> Unit) : AsyncTask<String, Void, String>() {
-
-
-    override fun doInBackground(vararg params: String?): String {
+class NewsApiTask(private val callback: (List<Article>?) -> Unit) : AsyncTask<String, Void, List<Article>>() {
+    @Deprecated("Deprecated in Java")
+    override fun doInBackground(vararg params: String?): List<Article>? {
 
         val apiUrl = params[0]
 
@@ -20,37 +18,27 @@ class NewsApiTask(private val callback: (List<Article>?) -> Unit) : AsyncTask<St
             val url = URL(apiUrl)
             val urlConnection: HttpURLConnection = url.openConnection() as HttpURLConnection
 
-            try {
-                urlConnection.requestMethod = "GET"
-                urlConnection.connect()
+            urlConnection.requestMethod = "GET"
+            urlConnection.connect()
 
-                val inputStream = urlConnection.inputStream
-                val reader = BufferedReader(InputStreamReader(inputStream))
-                val stringBuilder = StringBuilder()
+            val inputStream = urlConnection.inputStream
+            val reader = InputStreamReader(inputStream,"UTF-8")
+            val request = Gson().fromJson(reader,NewsResponse::class.java)
+                //updateUI(request)
+            inputStream.close()
+            reader.close()
 
-                var line: String?
-                while (reader.readLine().also { line = it } != null) {
-                    stringBuilder.append(line).append("\n")
-                }
+            return request?.articles
 
-                return stringBuilder.toString()
-            } finally {
-                urlConnection.disconnect()
-            }
         } catch (e: Exception) {
             e.printStackTrace()
-            return ""
+            return null
         }
     }
 
-    override fun onPostExecute(result: String?) {
-        if (!result.isNullOrBlank()) {
-            // Parse JSON and convert it to a list of articles
-            val newsResponse = Gson().fromJson(result, NewsResponse::class.java)
-            callback.invoke(newsResponse?.article)
-        } else {
-            callback.invoke(null)
-        }
+
+    override fun onPostExecute(result: List<Article>) {
+            callback.invoke(result)
     }
 
 

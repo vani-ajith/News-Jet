@@ -1,10 +1,11 @@
 package com.example.newsarticleapp.model
 
-data class Article(var source: Source,
-                   var headline : String,
+data class Article(
+                   var source: Source,
+                   var title : String,
                    var url : String,
-                   var image : String,
-                   var datePosted : String,
+                   var urlToImage : String,
+                   var publishedAt : String,
                    var author : String,
                    var description : String
 )

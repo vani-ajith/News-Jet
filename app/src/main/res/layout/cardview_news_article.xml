@@ -29,10 +29,7 @@
                 android:text="Article headline"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
-            <ImageView
-                android:id="@+id/imageview_article_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,6 +40,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="#269043"
                     android:text="date posted"
                     android:textSize="12sp"
                     android:textStyle="bold"/>
@@ -51,15 +50,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
+                    android:textColor="@color/status_bar_new"
                     android:text="author"
                     android:textSize="12sp"
                     android:textStyle="bold"/>
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageview_article_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_error_image"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:contentDescription="url image"/>
+
             <TextView
                 android:id="@+id/textview_article_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
+                android:layout_marginTop="8dp"
                 android:text= "@string/article_sample_description"
                 android:textSize="13sp"
                 android:textStyle="bold"/>

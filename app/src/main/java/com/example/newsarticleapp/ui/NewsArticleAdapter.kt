@@ -15,33 +15,30 @@ class NewsArticleAdapter(private val onItemClick: (String) -> Unit) : Adapter<Ne
 
     private val newsArticleList = mutableListOf<Article>()
 
-
-    fun setData(newArticles: List<Article>) {
-        newsArticleList.clear()
-        newsArticleList.addAll(newArticles)
-        notifyDataSetChanged()
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Viewholder {
-
         val view = LayoutInflater.from(parent.context).inflate(R.layout.cardview_news_article,parent,false)
         return Viewholder(view)
     }
 
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
 
-        holder.article_headline.text = newsArticleList[position].headline;
-        holder.article_datePosted.text = newsArticleList[position].datePosted;
+        holder.article_headline.text = newsArticleList[position].title;
+        holder.article_datePosted.text = newsArticleList[position].publishedAt;
         holder.article_author.text = newsArticleList[position].author;
         holder.article_description.text = newsArticleList[position].description;
 
-        Picasso.get().load(newsArticleList[position].image).into(holder.article_image)
-
+        Picasso.get().load(newsArticleList[position].urlToImage).error(R.drawable.ic_error_image).into(holder.article_image)
         holder.article_headline.setOnClickListener { onItemClick.invoke(newsArticleList[position].url) }
     }
 
     override fun getItemCount(): Int {
         return newsArticleList.size
+    }
+
+    fun setData(newArticles: List<Article>) {
+        newsArticleList.clear()
+        newsArticleList.addAll(newArticles)
+        notifyDataSetChanged()
     }
 
     class Viewholder(itemView : View) : RecyclerView.ViewHolder(itemView) {
